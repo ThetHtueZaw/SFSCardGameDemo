@@ -12,6 +12,7 @@ public class PlayerPanel : MonoBehaviour
     [SerializeField] private Transform _cardRoot;
     [SerializeField] private GameObject _turnAnimationObj;
     [SerializeField] private GameObject _explodeTxtObj;
+    [SerializeField] private GameObject _drawCardAnimObj;
     [SerializeField] private CanvasGroup _canvasGroup;
 
     public User CurrentUser { get; private set; }
@@ -30,6 +31,7 @@ public class PlayerPanel : MonoBehaviour
     {
         GameObject cardObj = Instantiate(_cardPrefab, _cardRoot);
         _playerCards.Add(cardObj);
+        StartCoroutine(ShowDrawCardAnim());
     }
 
     public void RemoveCard()
@@ -67,5 +69,14 @@ public class PlayerPanel : MonoBehaviour
     public void ShowExplodeAnimation()
     {
         _explodeTxtObj.SetActive(true);
+    }
+
+    IEnumerator ShowDrawCardAnim()
+    {
+        _drawCardAnimObj.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        _drawCardAnimObj.SetActive(false);
     }
 }

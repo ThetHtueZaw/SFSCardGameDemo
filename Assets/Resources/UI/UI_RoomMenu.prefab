@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCamUI: 0
-  _roonListHandler: {fileID: 168165333028386909}
+  _roomListHandler: {fileID: 168165333028386909}
   _roomCreator: {fileID: 4913219969518126297}
 --- !u!1 &5210503233375477624
 GameObject:

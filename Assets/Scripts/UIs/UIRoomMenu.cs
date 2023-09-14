@@ -5,14 +5,15 @@ using TinAungKhant.UIManagement;
 
 public class UIRoomMenu : UIBase
 {
-    [SerializeField] private RoomListHandler _roonListHandler;
+    [SerializeField] private RoomListHandler _roomListHandler;
     [SerializeField] private RoomCreator _roomCreator;
 
     protected override void OnInit()
     {
         base.OnInit();
 
-        _roonListHandler.ListenSfsEvents();
+        _roomListHandler.ListenSfsEvents();
+        _roomListHandler.RequestRoomList();
         _roomCreator.ListenCreateRoomClick();
     }
 
@@ -20,6 +21,6 @@ public class UIRoomMenu : UIBase
     {
         base.OnClose();
 
-        _roonListHandler.RemoveSfsEvents();
+        _roomListHandler.RemoveSfsEvents();
     }
 }

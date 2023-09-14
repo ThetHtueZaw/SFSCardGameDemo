@@ -13,6 +13,7 @@ public class TableUIHandler : MonoBehaviour
     [SerializeField] private GameObject _yourTurnTxt;
     [SerializeField] private GameObject _clientExplodeWarningPanel;
     [SerializeField] private GameObject _putExplodeCardPanel;
+    [SerializeField] private Timer _timer;
 
     private List<PlayerPanel> _playerPanels = new List<PlayerPanel>();
 
