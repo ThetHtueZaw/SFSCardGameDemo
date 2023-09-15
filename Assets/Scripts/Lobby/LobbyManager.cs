@@ -14,6 +14,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject _lobbyPanelPrefab;
     [SerializeField] private Transform _root;
     [SerializeField] private Button _startBtn;
+    [SerializeField] private Countdown _countdown;
 
     public void ListenSFSEvent()
     {
@@ -43,6 +44,15 @@ public class LobbyManager : MonoBehaviour
 
     public void StartGame()
     {
+        _countdown.StartCount();
+
+        StartCoroutine(StartGameDelay());
+    }
+
+    IEnumerator StartGameDelay()
+    {
+        yield return new WaitForSeconds(10);
+
         ExtensionRequest extensionRequest = new ExtensionRequest(ExtensionEventNames.START_GAME, new SFSObject());
         GlobalSFSManager.Instance.GetSfsClient().Send(extensionRequest);
     }

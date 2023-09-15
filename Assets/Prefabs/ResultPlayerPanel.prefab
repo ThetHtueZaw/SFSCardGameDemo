@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b540bd83d7ad84880b2ba7c788aa51e5, type: 3}
+  m_Sprite: {fileID: -1698258781, guid: 789b19a2821ca414e8a57d8e96abdb9a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -513,6 +513,7 @@ MonoBehaviour:
   _cardRoot: {fileID: 0}
   _turnAnimationObj: {fileID: 1038593860292920189}
   _explodeTxtObj: {fileID: 8574202819002180286}
+  _drawCardAnimObj: {fileID: 0}
   _canvasGroup: {fileID: 3552983695798553265}
 --- !u!225 &3552983695798553265
 CanvasGroup:

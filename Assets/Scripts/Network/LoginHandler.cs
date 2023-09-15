@@ -18,7 +18,10 @@ public class LoginHandler : MonoBehaviour
     [SerializeField] private TMP_InputField _userNameIF;
     [SerializeField] private TMP_InputField _passwordIF;
     [SerializeField] private Button _loginBtn;
+    [SerializeField] private Button _loginAsGuestBtn;
     [SerializeField] private Button _toSignUpBtn;
+    [SerializeField] private LoginUIManager _loginUIManager;
+    [SerializeField] private GameObject _loginPanelObj;
 
     [SerializeField] private string _host;
     [SerializeField] private int _tcpPort;
@@ -37,6 +40,7 @@ public class LoginHandler : MonoBehaviour
         _sfsManager = GlobalSFSManager.Instance;
         _sfs = _sfsManager.CreateSfsClient();
         _loginBtn.interactable = false;
+        _loginAsGuestBtn.interactable = false;
 
 
         ConfigData config = new ConfigData();
@@ -77,6 +81,14 @@ public class LoginHandler : MonoBehaviour
         }
     }
 
+    public void LoginAsGuest()
+    {
+        Debug.Log("logging in as guest");
+
+        _sfs.Send(new LogoutRequest());
+        _sfs.Send(new LoginRequest("", "", _zone));
+    }
+
     private void OnConnection(BaseEvent evt)
     {
         // Check if the conenction was established or not
@@ -85,10 +97,11 @@ public class LoginHandler : MonoBehaviour
             Debug.Log("SFS2X API version: " + _sfs.Version);
             Debug.Log("Connection mode is: " + _sfs.ConnectionMode);
             _loginBtn.interactable = true;
+            _loginAsGuestBtn.interactable = true;
             _loginBtn.onClick.AddListener(() => Login());
+            _loginAsGuestBtn.onClick.AddListener(() => LoginAsGuest());
 
-            // Login
-            //_sfs.Send(new LoginRequest(nameInput.text));
+            _sfs.Send(new LogoutRequest());
         }
         else
         {
@@ -105,8 +118,10 @@ public class LoginHandler : MonoBehaviour
     {
         Debug.Log($"Logged In as {_sfs.MySelf.Name}");
 
-        UIManager.Instance.CloseUI(GLOBALCONST.UI_LOGIN);
-        UIManager.Instance.ShowUI(GLOBALCONST.UI_ROOM_MENU);
+        _loginPanelObj.SetActive(false);
+        _loginUIManager.PlayAvatarAnim();
+        //UIManager.Instance.CloseUI(GLOBALCONST.UI_LOGIN);
+        //UIManager.Instance.ShowUI(GLOBALCONST.UI_ROOM_MENU);
     }
 
     private void ToSignUp()
@@ -114,7 +129,7 @@ public class LoginHandler : MonoBehaviour
         _sfs.Send(new LogoutRequest());
         _sfs.Send(new LoginRequest("", "", _zone));
 
-        UIManager.Instance.ShowUI(GLOBALCONST.UI_SIGNUP);
-        UIManager.Instance.CloseUI(GLOBALCONST.UI_LOGIN);
+        //UIManager.Instance.ShowUI(GLOBALCONST.UI_SIGNUP);
+        //UIManager.Instance.CloseUI(GLOBALCONST.UI_LOGIN);
     }
 }
