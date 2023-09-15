@@ -9,6 +9,6 @@ public class InitManager : Singleton<InitManager>
     void Start()
     {
 
-        UIManager.Instance.ShowUI(GLOBALCONST.UI_LOGIN);
+        UIManager.Instance.ShowUI(GLOBALCONST.UI_EXPLODING_LOGIN);
     }
 }

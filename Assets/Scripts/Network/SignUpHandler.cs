@@ -46,6 +46,7 @@ public class SignUpHandler : MonoBehaviour
             requestObj.PutUtfString("email", _emailIF.text);
 
             GlobalSFSManager.Instance.GetSfsClient().Send(new ExtensionRequest("$SignUp.Submit", requestObj));
+            GlobalSFSManager.Instance.GetSfsClient().Send(new LogoutRequest());
         }
         else
         {

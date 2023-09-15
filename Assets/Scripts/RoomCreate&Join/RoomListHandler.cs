@@ -75,7 +75,7 @@ public class RoomListHandler : MonoBehaviour
     {
         Debug.Log("Joined Room : " + evt.Params["room"]);
 
-        UIManager.Instance.ShowUI(GLOBALCONST.UI_LOBBY);
+        UIManager.Instance.ShowUI(GLOBALCONST.UI_EXPLODING_LOBBY);
         UIManager.Instance.CloseUI(GLOBALCONST.UI_ROOM_MENU);
     }
 
